@@ -9,7 +9,7 @@ Tradie is an innovative, open-source trading bot tailored for the Solana blockch
 - **Efficient Token Swapping**: Utilizes Jupiter for seamless token exchanges on the Solana blockchain.
 - **Detailed Market Analysis**: Leverages candlestick data from CryptoCompare to guide trading decisions.
 - **Advanced Technical Indicators**: Incorporates indicators like Relative Strength Index (RSI), short and medium Exponential Moving Averages (EMA), and Bollinger Bands (BB) for market analysis.
-- **Customizable Trading Strategies**: Allows detailed configuration of slippage, stop loss, take profit, and more. (WIP)
+- **Customizable Trading Strategies**: Allows detailed configuration of slippage, stop loss, take profit, RSI.
 - **Real-Time Data Processing**: Fetches market data at user-defined intervals for timely trading decisions.
 - **Transparent Logging**: Provides extensive logging to monitor operations and performance.
 
@@ -42,17 +42,20 @@ Tradie is an innovative, open-source trading bot tailored for the Solana blockch
 1. Rename `.env.copy` to `.env` and configure your settings.
 2. Open the .env file in a text editor and fill in your details:
 
-- PRIVATE_KEY: Your Solana wallet private key.
-- CRYPTO_COMPARE_API_KEY: Your API key from CryptoCompare.
-- RPC_ENDPOINT: Your Solana RPC endpoint URL.
-- BUY_TOKEN_ADDRESS: The address of the token you want to buy.
-- QUOTE_SYMBOL: The symbol of the quote currency, default is USDC.
-- CANDLE_AGGREGATE_MINUTES: Candlestick aggregation period in minutes.
-- GET_MARKET_DATA_INTERVAL_SECONDS: Interval for fetching market data in seconds.
-- SLIPPAGE_PERCENT: Maximum acceptable slippage percentage.
-- STOP_LOSS: Stop loss percentage.
-- TAKE_PROFIT: Take profit percentage.
-- LOG_LEVEL: Logging level (e.g., info, debug).
+- `PRIVATE_KEY`: Your Solana wallet private key.
+- `CRYPTO_COMPARE_API_KEY`: Your API key from CryptoCompare.
+- `RPC_ENDPOINT`: Your Solana RPC endpoint URL.
+- `BUY_TOKEN_ADDRESS`: The address of the token you want to buy.
+- `QUOTE_SYMBOL`: The symbol of the quote currency (`default: USDC`).
+- `CANDLE_AGGREGATE_MINUTES`: Candlestick aggregation period in minutes (`default: 15`).
+- `GET_MARKET_DATA_INTERVAL_SECONDS`: Interval for fetching market data in seconds (`default: 30`).
+- `SLIPPAGE_PERCENT`: Maximum acceptable slippage percentage (`default: 10`).
+- `STOP_LOSS`: Stop loss percentage (`default: 7`).
+- `TAKE_PROFIT`: Take profit percentage (`default: 25`).
+- `RSI_TO_BUY`: RSI lower value to buy (`default: 30`).
+- `RSI_TO_SELL`: RSI upper value to sell (`default: 70`).
+- `TRANSACTION_PRIORITY_FEE`: solana transaction priority fee (`default: 'auto'`, or in SOL e.g. `0.005`).
+- `LOG_LEVEL`: Logging level (`deafult: info`).
 
 ## Usage
 
