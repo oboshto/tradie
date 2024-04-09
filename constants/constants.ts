@@ -15,6 +15,10 @@ export const STOP_LOSS = Number(retrieveEnvVariable('STOP_LOSS'))
 export const TAKE_PROFIT = Number(retrieveEnvVariable('TAKE_PROFIT'))
 export const LOG_LEVEL = retrieveEnvVariable('LOG_LEVEL')
 
+const transactionPriorityFee = Number(retrieveEnvVariable('TRANSACTION_PRIORITY_FEE'))
+export const TRANSACTION_PRIORITY_FEE: 'auto' | number = isNaN(transactionPriorityFee) ? 'auto' : transactionPriorityFee // 'auto' or SOL value like 0.004
+
+
 function retrieveEnvVariable(variableName: string) {
     const variable = process.env[variableName] || '';
     if (!variable) {

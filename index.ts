@@ -3,7 +3,6 @@ import {
     getBB,
     getRSI
 } from './indicators'
-
 import {
     CRYPTO_COMPARE_API_KEY,
     LOG_LEVEL,
@@ -14,6 +13,7 @@ import {
     BUY_TOKEN_ADDRESS,
     QUOTE_SYMBOL,
     SLIPPAGE_PERCENT,
+    TRANSACTION_PRIORITY_FEE,
 } from './constants'
 
 import {
@@ -83,6 +83,7 @@ async function init() {
     logger.info(`Analyzing market price every ${GET_MARKET_DATA_INTERVAL_SECONDS} seconds.`)
     logger.info(`Candle aggregate for ${CANDLE_AGGREGATE_MINUTES} min.`)
     logger.info(`Slippage is ${SLIPPAGE_PERCENT}%.`)
+    logger.info(`Transaction priority fee is ${TRANSACTION_PRIORITY_FEE}.`)
 
     try {
         const assets = await getAssetsData()
