@@ -1,5 +1,14 @@
-import {Connection, PublicKey, VersionedTransaction} from "@solana/web3.js";
-import {RPC_ENDPOINT, SLIPPAGE_PERCENT} from "../constants";
+import {
+    Connection,
+    LAMPORTS_PER_SOL,
+    PublicKey,
+    VersionedTransaction,
+} from "@solana/web3.js";
+import {
+    RPC_ENDPOINT,
+    SLIPPAGE_PERCENT,
+    TRANSACTION_PRIORITY_FEE,
+} from "../constants";
 import fetch from "cross-fetch";
 import {wallet} from "../wallet";
 import pino from "pino";
@@ -7,6 +16,8 @@ import Logger = pino.Logger;
 
 const referralKey: string = 'J1igXZJiJjsBWKLGPna9egHFYZjW5dPDGv7ajPDqp4Pv'
 const platformFeePercent = 0.2
+
+const prioritizationFeeLamports = TRANSACTION_PRIORITY_FEE === 'auto' ? 'auto' : TRANSACTION_PRIORITY_FEE * (10 ** LAMPORTS_PER_SOL)
 
 const connection = new Connection(RPC_ENDPOINT)
 
@@ -56,8 +67,8 @@ export const buyToken = async (mintIn: string, mintOut: string, amount: string, 
                 userPublicKey: wallet.publicKey.toString(),
                 wrapAndUnwrapSol: true,
                 feeAccount,
-                dynamicComputeUnitLimit: true,
-                prioritizationFeeLamports: 'auto' // todo: make it customizable (5000000)
+                dynamicComputeUnitLimit: false,
+                prioritizationFeeLamports
             })
         })
     ).json()

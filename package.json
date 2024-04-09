@@ -1,6 +1,6 @@
 {
   "name": "tradie",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tradie is a SOLANA trading bot written in typescript. It uses RSI, EMA and Bollinger-Bands technical indicators to buy or sell cryptocurrencies.",
   "main": "index.js",
   "scripts": {

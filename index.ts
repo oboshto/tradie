@@ -3,7 +3,6 @@ import {
     getBB,
     getRSI
 } from './indicators'
-
 import {
     CRYPTO_COMPARE_API_KEY,
     LOG_LEVEL,
@@ -14,6 +13,9 @@ import {
     BUY_TOKEN_ADDRESS,
     QUOTE_SYMBOL,
     SLIPPAGE_PERCENT,
+    TRANSACTION_PRIORITY_FEE,
+    RSI_TO_BUY,
+    RSI_TO_SELL,
 } from './constants'
 
 import {
@@ -83,6 +85,7 @@ async function init() {
     logger.info(`Analyzing market price every ${GET_MARKET_DATA_INTERVAL_SECONDS} seconds.`)
     logger.info(`Candle aggregate for ${CANDLE_AGGREGATE_MINUTES} min.`)
     logger.info(`Slippage is ${SLIPPAGE_PERCENT}%.`)
+    logger.info(`Transaction priority fee is ${TRANSACTION_PRIORITY_FEE}.`)
 
     try {
         const assets = await getAssetsData()
@@ -149,7 +152,7 @@ async function analyzeMarket() {
             }
         }
 
-        if (((emaShort < emaMedium) || (closePrice > bb.upper)) && rsi >= 75) {
+        if (((emaShort < emaMedium) || (closePrice > bb.upper)) && rsi >= RSI_TO_SELL) {
             logger.warn(`SELL signal is detected. Start selling...`)
             await sell(closePrice)
         }
@@ -158,7 +161,7 @@ async function analyzeMarket() {
     if (quoteTokenBalance > 0) {
         logger.debug(`Quote Token balance is ${quoteTokenBalance} ${QUOTE_SYMBOL}. Looking for buy signal...`)
 
-        if (((emaShort > emaMedium) || (closePrice < bb.lower)) && rsi <= 31) {
+        if (((emaShort > emaMedium) || (closePrice < bb.lower)) && rsi <= RSI_TO_BUY) {
             logger.warn(`BUY signal is detected. Buying...`)
             await buy(closePrice)
         }
