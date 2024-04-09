@@ -13,6 +13,8 @@ export const QUOTE_SYMBOL = retrieveEnvVariable('QUOTE_SYMBOL')
 export const SLIPPAGE_PERCENT = Number(retrieveEnvVariable('SLIPPAGE_PERCENT'))
 export const STOP_LOSS = Number(retrieveEnvVariable('STOP_LOSS'))
 export const TAKE_PROFIT = Number(retrieveEnvVariable('TAKE_PROFIT'))
+export const RSI_TO_BUY = Number(retrieveEnvVariable('RSI_TO_BUY'))
+export const RSI_TO_SELL = Number(retrieveEnvVariable('RSI_TO_SELL'))
 export const LOG_LEVEL = retrieveEnvVariable('LOG_LEVEL')
 
 const transactionPriorityFee = Number(retrieveEnvVariable('TRANSACTION_PRIORITY_FEE'))

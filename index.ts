@@ -14,6 +14,8 @@ import {
     QUOTE_SYMBOL,
     SLIPPAGE_PERCENT,
     TRANSACTION_PRIORITY_FEE,
+    RSI_TO_BUY,
+    RSI_TO_SELL,
 } from './constants'
 
 import {
@@ -150,7 +152,7 @@ async function analyzeMarket() {
             }
         }
 
-        if (((emaShort < emaMedium) || (closePrice > bb.upper)) && rsi >= 75) {
+        if (((emaShort < emaMedium) || (closePrice > bb.upper)) && rsi >= RSI_TO_SELL) {
             logger.warn(`SELL signal is detected. Start selling...`)
             await sell(closePrice)
         }
@@ -159,7 +161,7 @@ async function analyzeMarket() {
     if (quoteTokenBalance > 0) {
         logger.debug(`Quote Token balance is ${quoteTokenBalance} ${QUOTE_SYMBOL}. Looking for buy signal...`)
 
-        if (((emaShort > emaMedium) || (closePrice < bb.lower)) && rsi <= 31) {
+        if (((emaShort > emaMedium) || (closePrice < bb.lower)) && rsi <= RSI_TO_BUY) {
             logger.warn(`BUY signal is detected. Buying...`)
             await buy(closePrice)
         }
